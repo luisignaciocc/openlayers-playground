@@ -1,16 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-
-import Map from "ol/Map";
-import View from "ol/View";
-import TileLayer from "ol/layer/Tile";
-import OSM from "ol/source/OSM";
 import { getBottomLeft, getTopRight } from "ol/extent";
+import TileLayer from "ol/layer/Tile";
+import Map from "ol/Map";
 import { fromLonLat, toLonLat } from "ol/proj";
-
-import proj4 from "proj4";
 import { register } from "ol/proj/proj4";
+import OSM from "ol/source/OSM";
+import View from "ol/View";
+import proj4 from "proj4";
+import React, { useEffect, useRef } from "react";
 
 function registerAndInitializeCustomProjections() {
   proj4.defs(
@@ -39,6 +37,7 @@ const OLMap = () => {
         northEast: { lat: topRight[1], lng: topRight[0] },
       };
 
+      // eslint-disable-next-line no-console
       console.log({ bounds });
     };
 
@@ -56,6 +55,7 @@ const OLMap = () => {
           projection: "EPSG:3857",
         }),
       });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       map.current = newMap;
     }
