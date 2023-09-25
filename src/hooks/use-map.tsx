@@ -108,7 +108,7 @@ export const useMap = () => {
           }
         );
         const coordinates = drawnPolygonGeoJSON.coordinates[0]
-          .map((coordinate: number[]) => coordinate.join(" "))
+          .map((coordinate: number[]) => coordinate.reverse().join(" "))
           .join(", ");
         const cqlFilter = `WITHIN(geom, POLYGON((${coordinates})))`;
 
@@ -120,7 +120,7 @@ export const useMap = () => {
           url:
             "https://geowebservices.stanford.edu/geoserver/wfs?service=WFS&" +
             "version=1.1.0&request=GetFeature&typename=druid:mz047dz0617&" +
-            "outputFormat=application/json&" +
+            "outputFormat=application/json" +
             `&CQL_FILTER=${cqlFilter}`,
         });
         const wfsLayerNew = new VectorLayer({
