@@ -110,6 +110,7 @@ export const useMap = () => {
         const coordinates = drawnPolygonGeoJSON.coordinates[0]
           .map((coordinate: number[]) => coordinate.reverse().join(" "))
           .join(", ");
+        // const cqlFilter = `INTERSECTS(geom, POLYGON((${coordinates})))`;
         const cqlFilter = `WITHIN(geom, POLYGON((${coordinates})))`;
 
         const wfsSourceNew = new VectorSource({
